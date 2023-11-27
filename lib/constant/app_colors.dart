@@ -9,6 +9,7 @@ class AppColors {
   static const buttonColor = Colors.limeAccent;
   static const indigoAccent = Colors.indigoAccent;
   static const transparent = Colors.transparent;
+  static const appBottomBar = Colors.green;
 
   // Appbar
   static final appbarBackground = Colors.red[900];

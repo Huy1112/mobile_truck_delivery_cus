@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       scrollBehavior: WebDragScrollBehavior(),
       getPages: AppPages.routes,
       theme: ThemeData(
-        buttonTheme: ButtonThemeData(
+        buttonTheme: const ButtonThemeData(
           buttonColor: AppColors.buttonColor,     //  <-- dark color
           textTheme: ButtonTextTheme.primary, //  <-- this auto selects the right color
         ),
