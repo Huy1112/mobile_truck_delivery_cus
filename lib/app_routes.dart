@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truck_delivery_customer/reponsive/responsive_layout.dart';
 import 'package:truck_delivery_customer/screen/dashboard_screen.dart';
+import 'package:truck_delivery_customer/screen/delivery_detail.dart';
 import 'package:truck_delivery_customer/screen/login.dart';
 
 class AppPages {
@@ -15,6 +16,10 @@ class AppPages {
     GetPage(
       name: "/login",
       page: () => LoginPage(),
+    ),
+    GetPage(
+      name: "/deliveryDetail",
+      page: () => DeliveryDetail(),
     ),
     GetPage(
       name: "/stock",

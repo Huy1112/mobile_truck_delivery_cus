@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:truck_delivery_customer/wigets/subtitle.dart';
 
+import '../domain/route.dart';
 import 'card_announce_medium.dart';
-import 'card_with_transparent_and_border.dart';
+import 'floating_action_button.dart';
 import 'headline.dart';
-import 'navigate_button.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({super.key});
@@ -14,6 +13,24 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<HomeWidget> {
+  static const List<Widget> _widgetServiceOptions = <Widget>[
+    FloatingActionButtonForm(
+      iconData: Icons.local_shipping,
+      label: "Giao Hàng",
+      url: Routes.deliveryDetailPage,
+    ),
+    FloatingActionButtonForm(
+      iconData: Icons.directions_car_filled,
+      label: "Ôtô",
+      url: '',
+    ),
+    FloatingActionButtonForm(
+      iconData: Icons.apps,
+      label: "Tất cả",
+      url: '',
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -23,60 +40,92 @@ class _MyStatefulWidgetState extends State<HomeWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Headline(
-            title: "Dashboard",
-            caption: "Un bref aperçu de l'etat du systeme",
+            title: "Xin Chào",
+            caption: "Phạm Huy",
           ),
           const SizedBox(height: 32),
           SizedBox(
             height: 214,
             child: ListView.separated(
-              itemCount: 12,
+              itemCount: 3,
               shrinkWrap: true,
               primary: false,
               scrollDirection: Axis.horizontal,
               separatorBuilder: (BuildContext context, int index) =>
-              const SizedBox(width: 16),
+                  const SizedBox(width: 16),
               itemBuilder: (context, index) => const CardAnnounceMedium(
                 iconData: Icons.stars,
-                title: "La meilleure information ici!",
-                subtitle:
-                "Cette card est faite pour placer des annonces important pour le systeme.",
+                title: "Giao Hàng Tận Nơi",
+                subtitle: "Dịch vụ vẩn chuyển hàng hóa.",
               ),
             ),
           ),
-          const SizedBox(height: 32),
-          Row(
-            children: [
-              const Subtitle(title: "Section"),
-              const Spacer(),
-              NavigateButton(
-                onTap: () {},
-                title: "Voir plus",
-                iconData: Icons.arrow_forward,
-              ),
-            ],
-          ),
+          const SizedBox(height: 16),
           SizedBox(
-            height: 214,
-            child: ListView.separated(
-              itemCount: 10,
-              shrinkWrap: true,
-              primary: false,
-              scrollDirection: Axis.horizontal,
-              separatorBuilder: (BuildContext context, int index) =>
-              const SizedBox(width: 16),
-              itemBuilder: (context, index) =>
-                  CardWithTransparentAndBorder(
-                    selected: index == 0,
-                    title: 'Une Section',
-                    description: 'Ceci est la description de cette section.',
-                    onTap: () {},
-                  ),
-            ),
-          ),
+              height: 60,
+              child: ListView.builder(
+                // This next line does the trick.
+                scrollDirection: Axis.horizontal,
+                itemCount: _widgetServiceOptions.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                    child: _widgetServiceOptions[index],
+                  );
+                },
+              )),
           const SizedBox(height: 32),
         ],
       ),
     );
   }
 }
+
+//
+// Card(
+// color: Colors.green,
+// shadowColor: Colors.black,
+// child: Column(
+// mainAxisSize: MainAxisSize.min,
+// mainAxisAlignment: MainAxisAlignment.start,
+// crossAxisAlignment: CrossAxisAlignment.start,
+// children: <Widget> [
+// Row(
+// mainAxisSize: MainAxisSize.min,
+// mainAxisAlignment: MainAxisAlignment.start,
+// crossAxisAlignment: CrossAxisAlignment.start,
+// children: <Widget> [
+// Icon(Icons.pending_actions),
+// TextFormField(
+// // controller: loginController.passwordController,
+// decoration: const InputDecoration(
+// filled: true,
+// hintText: 'Điểm đi',
+// border: InputBorder.none,
+// ),
+// obscureText: true,
+// onChanged: (value) {
+// // formData.password = value;
+// },
+// ),
+// ],
+// )
+//
+// // Container(
+// //   padding: EdgeInsets.fromLTRB(16.0, 0, 16.0, 16.0),
+// //   alignment: Alignment.centerLeft,
+// //   child: TextFormField(
+// //     // controller: loginController.passwordController,
+// //     decoration: const InputDecoration(
+// //       filled: true,
+// //       hintText: 'Điểm đến',
+// //       border: InputBorder.none,
+// //     ),
+// //     obscureText: true,
+// //     onChanged: (value) {
+// //       // formData.password = value;
+// //     },
+// //   ),
+// // ),
+// ],
+// )),

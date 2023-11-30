@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:truck_delivery_customer/screen/dashboard_screen.dart';
 import 'package:truck_delivery_customer/screen/login.dart';
 import 'package:truck_delivery_customer/wigets/web_drag_scroll_behavior.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: LoginPage(),
+      home: DashboardScreen(),
       title: 'Responsive dashboard ',
       debugShowCheckedModeBanner: false,
       scrollBehavior: WebDragScrollBehavior(),

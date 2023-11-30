@@ -10,7 +10,10 @@ class AppColors {
   static const indigoAccent = Colors.indigoAccent;
   static const transparent = Colors.transparent;
   static const appBottomBar = Colors.green;
+  static const blueAccent = Colors.blueAccent;
+  static const black = Colors.black;
+  static const white = Colors.white;
 
   // Appbar
-  static final appbarBackground = Colors.red[900];
+  static final appbarBackground = Colors.green;
 }
