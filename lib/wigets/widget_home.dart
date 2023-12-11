@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:truck_delivery_customer/controller/dashboard_controller.dart';
 
-import '../domain/route.dart';
+import '../models/route.dart';
 import 'card_announce_medium.dart';
 import 'floating_action_button.dart';
 import 'headline.dart';
@@ -18,15 +20,18 @@ class _MyStatefulWidgetState extends State<HomeWidget> {
       iconData: Icons.local_shipping,
       label: "Giao Hàng",
       url: Routes.deliveryDetailPage,
+      heroTag: 'btn1',
     ),
     FloatingActionButtonForm(
       iconData: Icons.directions_car_filled,
       label: "Ôtô",
       url: '',
+      heroTag: 'btn2',
     ),
     FloatingActionButtonForm(
       iconData: Icons.apps,
       label: "Tất cả",
+      heroTag: 'btn3',
       url: '',
     ),
   ];
@@ -79,53 +84,21 @@ class _MyStatefulWidgetState extends State<HomeWidget> {
       ),
     );
   }
-}
 
-//
-// Card(
-// color: Colors.green,
-// shadowColor: Colors.black,
-// child: Column(
-// mainAxisSize: MainAxisSize.min,
-// mainAxisAlignment: MainAxisAlignment.start,
-// crossAxisAlignment: CrossAxisAlignment.start,
-// children: <Widget> [
-// Row(
-// mainAxisSize: MainAxisSize.min,
-// mainAxisAlignment: MainAxisAlignment.start,
-// crossAxisAlignment: CrossAxisAlignment.start,
-// children: <Widget> [
-// Icon(Icons.pending_actions),
-// TextFormField(
-// // controller: loginController.passwordController,
-// decoration: const InputDecoration(
-// filled: true,
-// hintText: 'Điểm đi',
-// border: InputBorder.none,
-// ),
-// obscureText: true,
-// onChanged: (value) {
-// // formData.password = value;
-// },
-// ),
-// ],
-// )
-//
-// // Container(
-// //   padding: EdgeInsets.fromLTRB(16.0, 0, 16.0, 16.0),
-// //   alignment: Alignment.centerLeft,
-// //   child: TextFormField(
-// //     // controller: loginController.passwordController,
-// //     decoration: const InputDecoration(
-// //       filled: true,
-// //       hintText: 'Điểm đến',
-// //       border: InputBorder.none,
-// //     ),
-// //     obscureText: true,
-// //     onChanged: (value) {
-// //       // formData.password = value;
-// //     },
-// //   ),
-// // ),
-// ],
-// )),
+
+
+  // Future<void> _getAddressFromLatLng(Position position) async {
+  //   await placemarkFromCoordinates(
+  //       _currentPosition!.latitude, _currentPosition!.longitude)
+  //       .then((List<Placemark> placemarks) {
+  //     Placemark place = placemarks[0];
+  //     setState(() {
+  //       _currentAddress =
+  //       '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}';
+  //     });
+  //   }).catchError((e) {
+  //     debugPrint(e);
+  //   });
+  // }
+
+}

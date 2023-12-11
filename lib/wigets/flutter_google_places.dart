@@ -270,26 +270,6 @@ class _PlacesAutocompleteOverlayState extends PlacesAutocompleteState {
     }
   }
 
-  Widget _rowSearchBox(BuildContext context) => Row(
-    mainAxisSize: MainAxisSize.max,
-    mainAxisAlignment: MainAxisAlignment.start,
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: <Widget>[
-      SizedBox(
-        width: 45,
-        child: Icon(
-          Icons.my_location,
-          color: AppColors.primary,
-        ),
-      ),
-      Flexible(
-        child: AppBarPlacesAutoCompleteTextField(
-          textDecoration: widget.decoration,
-          textStyle: widget.textStyle,
-        ),
-      )
-    ],
-  );
 
   Icon get _iconBack => Theme.of(context).platform == TargetPlatform.iOS
       ? const Icon(Icons.arrow_back_ios)

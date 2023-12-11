@@ -6,6 +6,7 @@ class FloatingActionButtonForm extends StatelessWidget {
   final IconData iconData;
   final String label;
   final String url;
+  final String heroTag;
 
 
   const FloatingActionButtonForm({
@@ -13,13 +14,15 @@ class FloatingActionButtonForm extends StatelessWidget {
     required this.iconData,
     required this.label,
     required this.url,
+    required this.heroTag,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: SizedBox(
+    return SizedBox(
       height: 60,
-      child:  FittedBox(child: FloatingActionButton.small(
+      child: FittedBox(child: FloatingActionButton.small(
+        heroTag: heroTag,
         tooltip: "test",
         backgroundColor: AppColors.white,
         onPressed: () {Get.toNamed(url);},
@@ -29,7 +32,7 @@ class FloatingActionButtonForm extends StatelessWidget {
           color: Colors.black,
         ),
       )),
-    ),);
+    );
   }
 
 

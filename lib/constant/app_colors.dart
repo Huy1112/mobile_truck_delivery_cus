@@ -13,6 +13,7 @@ class AppColors {
   static const blueAccent = Colors.blueAccent;
   static const black = Colors.black;
   static const white = Colors.white;
+  Color buttonColortes = Color.fromARGB(255, 176, 255, 38);
 
   // Appbar
   static final appbarBackground = Colors.green;
