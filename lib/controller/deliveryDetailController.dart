@@ -9,10 +9,21 @@ import 'dashboard_controller.dart';
 class DeliveryDetailController extends GetxController {
   final pointToPickupInput = TextEditingController();
   final destinationInput = TextEditingController();
+  final otherDetailTypeMerchandiseInput = TextEditingController();
   final DashboardController dashboardController = Get.put(DashboardController());
   RxString addressPickUp = ''.obs;
   // 0: standard 1: premium
   int selectedService = 0;
+
+  //Type Selected Merchandise
+  RxInt tag = 0.obs;
+  bool isSelectedTypeOther = false;
+  List<String> options = [
+    'Thực Phẩm',
+    'Điện Tử',
+    'Dễ Vỡ',
+    'Khác',
+  ];
 
   @override
   void onInit() {
@@ -31,6 +42,15 @@ class DeliveryDetailController extends GetxController {
 
   void onClickRadioButtonToSetService(String value) {
     selectedService = int.parse(value);
+    update();
+  }
+
+  void onChangedValueTypeMerchandise(int value) {
+    if ( value == 3) {
+      isSelectedTypeOther = true;
+    } else {
+      isSelectedTypeOther = false;
+    }
     update();
   }
 }

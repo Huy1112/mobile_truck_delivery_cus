@@ -4,11 +4,13 @@ import 'package:get/get.dart';
 class Headline extends StatelessWidget {
   final String title;
   final String? caption;
+  final double? fontSizeTitle;
 
   const Headline({
     Key? key,
     required this.title,
     this.caption,
+    this.fontSizeTitle,
   }) : super(key: key);
 
   @override
@@ -24,7 +26,7 @@ class Headline extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .headlineSmall!
-                  .copyWith(fontWeight: FontWeight.bold),
+                  .copyWith(fontWeight: FontWeight.bold, fontSize: fontSizeTitle),
             ),
             caption != null
                 ? Text(
