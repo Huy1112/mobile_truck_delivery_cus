@@ -20,13 +20,13 @@ class MyApp extends StatelessWidget {
       home: DashboardScreen(),
       title: 'Responsive dashboard ',
       debugShowCheckedModeBanner: false,
-      scrollBehavior: WebDragScrollBehavior(),
+      // scrollBehavior: WebDragScrollBehavior(),
       getPages: AppPages.routes,
       theme: ThemeData(
-        buttonTheme: const ButtonThemeData(
-          buttonColor: AppColors.buttonColor,     //  <-- dark color
-          textTheme: ButtonTextTheme.primary, //  <-- this auto selects the right color
-        ),
+        // buttonTheme: const ButtonThemeData(
+        //   buttonColor: AppColors.buttonColor,     //  <-- dark color
+        //   textTheme: ButtonTextTheme.primary, //  <-- this auto selects the right color
+        // ),
         appBarTheme: const AppBarTheme(
             elevation: 0,
             color: Colors.transparent,
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           primary: AppColors.indigoAccent,
           secondary: Colors.deepOrange,
         ),
-        cardTheme: const CardTheme(elevation: 12, shadowColor: Colors.white),
+        cardTheme: const CardTheme(elevation: 1, shadowColor: Colors.black),
       ),
     );
   }

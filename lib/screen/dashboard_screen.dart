@@ -54,10 +54,6 @@ class DashboardScreen extends StatelessWidget {
                       label: 'Hoạt Động',
                     ),
                     BottomNavigationBarItem(
-                      icon: Icon(Icons.history_outlined),
-                      label: 'Lịch Sử',
-                    ),
-                    BottomNavigationBarItem(
                       icon: Icon(Icons.settings),
                       label: 'Cài Đặt',
                     ),

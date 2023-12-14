@@ -9,7 +9,15 @@ import 'dashboard_controller.dart';
 class DeliveryDetailController extends GetxController {
   final pointToPickupInput = TextEditingController();
   final destinationInput = TextEditingController();
+
   final otherDetailTypeMerchandiseInput = TextEditingController();
+
+  final lengthInput = TextEditingController();
+  final widthInput = TextEditingController();
+  final heightInput = TextEditingController();
+  final weightInput = TextEditingController();
+  final receiveCod = TextEditingController();
+
   final DashboardController dashboardController =
       Get.put(DashboardController());
   RxString addressPickUp = ''.obs;
@@ -43,6 +51,8 @@ class DeliveryDetailController extends GetxController {
     'L',
     'XL',
   ];
+
+  bool isReceiveCodForCustomer = false;
 
   @override
   void onInit() {
@@ -95,5 +105,13 @@ class DeliveryDetailController extends GetxController {
       result = 'packages/truck_delivery_customer/assets/images/size_xl.jpg';
     }
     return result;
+  }
+  void onChangedValueAddReceiveCodForCustomer(bool value) {
+    if (value) {
+      isReceiveCodForCustomer = true;
+    } else {
+      isReceiveCodForCustomer = false;
+    }
+    update();
   }
 }

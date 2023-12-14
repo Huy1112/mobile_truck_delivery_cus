@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:truck_delivery_customer/controller/dashboard_controller.dart';
+import 'package:truck_delivery_customer/wigets/navigate_button.dart';
+import 'package:truck_delivery_customer/wigets/subtitle.dart';
 
 import '../models/route.dart';
 import 'card_announce_medium.dart';
+import 'card_with_transparent_and_border.dart';
 import 'floating_action_button.dart';
 import 'headline.dart';
 
@@ -79,26 +82,38 @@ class _MyStatefulWidgetState extends State<HomeWidget> {
                   );
                 },
               )),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              const Subtitle(title: "Lịch sử Đơn hàng"),
+              const Spacer(),
+              NavigateButton(
+                onTap: () {},
+                title: "Xem tất cả",
+                iconData: Icons.arrow_forward,
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 214,
+            child: ListView.separated(
+              itemCount: 2,
+              shrinkWrap: true,
+              primary: false,
+              scrollDirection: Axis.horizontal,
+              separatorBuilder: (BuildContext context, int index) =>
+              const SizedBox(width: 16),
+              itemBuilder: (context, index) => CardWithTransparentAndBorder(
+                selected: index == 0,
+                title: 'Une Section',
+                description: 'Ceci est la description de cette section.',
+                onTap: () {},
+              ),
+            ),
+          ),
           const SizedBox(height: 32),
         ],
       ),
     );
   }
-
-
-
-  // Future<void> _getAddressFromLatLng(Position position) async {
-  //   await placemarkFromCoordinates(
-  //       _currentPosition!.latitude, _currentPosition!.longitude)
-  //       .then((List<Placemark> placemarks) {
-  //     Placemark place = placemarks[0];
-  //     setState(() {
-  //       _currentAddress =
-  //       '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}';
-  //     });
-  //   }).catchError((e) {
-  //     debugPrint(e);
-  //   });
-  // }
-
 }
