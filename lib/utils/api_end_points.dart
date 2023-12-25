@@ -6,4 +6,5 @@ class ApiEndPoints {
 
 class _AuthEndPoints {
   final String loginEmail = '/auth';
+  final String bookingOrder = '/bookingOrder';
 }

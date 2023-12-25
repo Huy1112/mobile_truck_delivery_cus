@@ -7,6 +7,7 @@ class FloatingActionButtonForm extends StatelessWidget {
   final String label;
   final String url;
   final String heroTag;
+  final String type;
 
 
   const FloatingActionButtonForm({
@@ -15,6 +16,7 @@ class FloatingActionButtonForm extends StatelessWidget {
     required this.label,
     required this.url,
     required this.heroTag,
+    required this.type,
   }) : super(key: key);
 
   @override
@@ -24,12 +26,12 @@ class FloatingActionButtonForm extends StatelessWidget {
       child: FittedBox(child: FloatingActionButton.small(
         heroTag: heroTag,
         tooltip: "test",
-        backgroundColor: AppColors.white,
+        backgroundColor:  AppColors.white,
         onPressed: () {Get.toNamed(url);},
         child: Icon(
           iconData,
           size: 25,
-          color: Colors.black,
+          color:  type == 'warning' ? Colors.yellow : Colors.black,
         ),
       )),
     );

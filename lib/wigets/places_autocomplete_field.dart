@@ -213,19 +213,19 @@ class LocationAutocompleteFieldState extends State<PlacesAutocompleteField> {
       controller.text,
       softWrap: true,
       style: widget.textStyleFormField ??
-          const TextStyle(color: Colors.black38),
+          const TextStyle(color: Colors.red, fontSize: 16),
     )
         : Text(
       widget.hint,
       style: widget.textStyleFormField ??
-          const TextStyle(color: Colors.black38),
+          const TextStyle(color: Colors.green, fontSize: 16),
     );
 
     Widget child = Row(
       children: <Widget>[
         widget.leading ?? const SizedBox(),
         const SizedBox(
-          width: 16.0,
+          width: 0,
         ),
         Expanded(
           child: text,

@@ -74,8 +74,8 @@ flutter:
      - packages/truck_delivery_customer/assets/images/google_white.png
      - packages/truck_delivery_customer/assets/images/size_s.jpg
      - packages/truck_delivery_customer/assets/images/size_m.jpg
-     - packages/truck_delivery_customer/assets/images/size_l.jpg
      - packages/truck_delivery_customer/assets/images/size_xl.jpg
+     - packages/truck_delivery_customer/assets/images/size_l.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

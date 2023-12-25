@@ -23,19 +23,19 @@ class _MyStatefulWidgetState extends State<HomeWidget> {
       iconData: Icons.local_shipping,
       label: "Giao Hàng",
       url: Routes.deliveryDetailPage,
-      heroTag: 'btn1',
+      heroTag: 'btn1', type: 'standard',
     ),
     FloatingActionButtonForm(
       iconData: Icons.directions_car_filled,
       label: "Ôtô",
       url: '',
-      heroTag: 'btn2',
+      heroTag: 'btn2', type:'standard',
     ),
     FloatingActionButtonForm(
       iconData: Icons.apps,
       label: "Tất cả",
       heroTag: 'btn3',
-      url: '',
+      url: '', type: 'standard',
     ),
   ];
 

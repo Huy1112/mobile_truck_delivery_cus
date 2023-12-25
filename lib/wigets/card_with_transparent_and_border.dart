@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constant/app_colors.dart';
+
 class CardWithTransparentAndBorder extends StatelessWidget {
   final String title;
   final String description;
@@ -23,45 +25,85 @@ class CardWithTransparentAndBorder extends StatelessWidget {
       onTap: selected ? null : onTap,
       borderRadius: borderRadius,
       child: Container(
-        width: 214,
-        height: 244,
-        padding: const EdgeInsets.all(32),
+        width: 340,
+        height: 100,
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: selected ? Colors.black : null,
+          color: AppColors.white,
           borderRadius: borderRadius,
-          border: Border.all(color: Colors.black, width: 2),
+          border: Border.all(color: Colors.black, width: 1),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(
-              Icons.generating_tokens,
-              size: 32,
-              color: selected ? secondaryColor : Colors.black,
-            ),
-            const SizedBox(height: 8),
-            Text(
-              title,
-              style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                  color: selected ? Colors.white : Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
+            Text("Da hoan tat - 26 Thg 10"),
+            const SizedBox(height: 12),
+            Column(children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.my_location,
+                        size: 18,
+                        color: AppColors.primary,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Pham Huy ',
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
+                            Text('- 22 duong 15', style: TextStyle(fontSize: 14)),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8,),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_downward,
+                        size: 15,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 8,),
+
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.my_location,
+                        size: 18,
+                        color: AppColors.primary,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Pham Huy ',
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.bold),
+                            ),
+                            Text('- 22 duong 15', style: TextStyle(fontSize: 14)),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],),
             const SizedBox(height: 3),
-            Text(
-              description,
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle2!
-                  .copyWith(color: Colors.grey),
-            ),
+
             const SizedBox(height: 10),
             Row(
               children: [
                 Text(
-                  "Voir les details",
+                  "Xem chi tiết",
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: selected ? secondaryColor : Colors.black),
+                      fontWeight: FontWeight.bold, color: secondaryColor),
                 ),
                 const SizedBox(width: 3),
                 Icon(
