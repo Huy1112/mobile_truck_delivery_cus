@@ -4,11 +4,12 @@ import 'package:truck_delivery_customer/controller/dashboard_controller.dart';
 import 'package:truck_delivery_customer/wigets/navigate_button.dart';
 import 'package:truck_delivery_customer/wigets/subtitle.dart';
 
+import '../constant/app_colors.dart';
 import '../models/route.dart';
-import 'card_announce_medium.dart';
-import 'card_with_transparent_and_border.dart';
-import 'floating_action_button.dart';
-import 'headline.dart';
+import '../wigets/card_announce_medium.dart';
+import '../wigets/card_with_transparent_and_border.dart';
+import '../wigets/floating_action_button.dart';
+import '../wigets/headline.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({super.key});
@@ -23,19 +24,22 @@ class _MyStatefulWidgetState extends State<HomeWidget> {
       iconData: Icons.local_shipping,
       label: "Giao Hàng",
       url: Routes.deliveryDetailPage,
-      heroTag: 'btn1', type: 'standard',
+      heroTag: 'btn1',
+      type: 'standard',
     ),
     FloatingActionButtonForm(
       iconData: Icons.directions_car_filled,
       label: "Ôtô",
       url: '',
-      heroTag: 'btn2', type:'standard',
+      heroTag: 'btn2',
+      type: 'standard',
     ),
     FloatingActionButtonForm(
       iconData: Icons.apps,
       label: "Tất cả",
       heroTag: 'btn3',
-      url: '', type: 'standard',
+      url: '',
+      type: 'standard',
     ),
   ];
 
@@ -43,32 +47,43 @@ class _MyStatefulWidgetState extends State<HomeWidget> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Headline(
-            title: "Xin Chào",
-            caption: "Phạm Huy",
-          ),
-          const SizedBox(height: 32),
           SizedBox(
-            height: 214,
-            child: ListView.separated(
-              itemCount: 3,
-              shrinkWrap: true,
-              primary: false,
-              scrollDirection: Axis.horizontal,
-              separatorBuilder: (BuildContext context, int index) =>
-                  const SizedBox(width: 16),
-              itemBuilder: (context, index) => const CardAnnounceMedium(
-                iconData: Icons.stars,
-                title: "Giao Hàng Tận Nơi",
-                subtitle: "Dịch vụ vẩn chuyển hàng hóa.",
+            height: 80,
+            width: double.infinity,
+            child: Container(
+              color: AppColors.appbarBackground,
+              child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [ Headline(
+                title: "Xin Chào",
+                caption: "Phạm Huy",
+              ),]
+            ),),
+          ),
+          Padding(
+            padding: EdgeInsets.all(13),
+            child: SizedBox(
+              height: 214,
+              child: ListView.separated(
+                itemCount: 3,
+                shrinkWrap: true,
+                primary: false,
+                scrollDirection: Axis.horizontal,
+                separatorBuilder: (BuildContext context, int index) =>
+                    const SizedBox(width: 16),
+                itemBuilder: (context, index) => const CardAnnounceMedium(
+                  iconData: Icons.stars,
+                  title: "Giao Hàng Tận Nơi",
+                  subtitle: "Dịch vụ vẩn chuyển hàng hóa.",
+                ),
               ),
             ),
           ),
-          const SizedBox(height: 16),
           SizedBox(
               height: 60,
               child: ListView.builder(
@@ -82,36 +97,38 @@ class _MyStatefulWidgetState extends State<HomeWidget> {
                   );
                 },
               )),
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              const Subtitle(title: "Lịch sử Đơn hàng"),
-              const Spacer(),
-              NavigateButton(
-                onTap: () {},
-                title: "Xem tất cả",
-                iconData: Icons.arrow_forward,
-              ),
-            ],
+          Padding(
+            padding: EdgeInsets.fromLTRB(13,13,13,0),
+            child: Row(
+              children: [
+                const Subtitle(title: "Lịch sử Đơn hàng"),
+                const Spacer(),
+                NavigateButton(
+                  onTap: () {},
+                  title: "Xem tất cả",
+                  iconData: Icons.arrow_forward,
+                ),
+              ],
+            ),
           ),
-          SizedBox(
-            height: 214,
+      Padding(
+        padding: EdgeInsets.all(13),
+        child: SizedBox(
+            height: 168,
             child: ListView.separated(
               itemCount: 2,
               shrinkWrap: true,
               primary: false,
               scrollDirection: Axis.horizontal,
               separatorBuilder: (BuildContext context, int index) =>
-              const SizedBox(width: 16),
+                  const SizedBox(width: 16),
               itemBuilder: (context, index) => CardWithTransparentAndBorder(
-                selected: index == 0,
                 title: 'Une Section',
                 description: 'Ceci est la description de cette section.',
                 onTap: () {},
               ),
             ),
-          ),
-          const SizedBox(height: 32),
+          ),),
         ],
       ),
     );

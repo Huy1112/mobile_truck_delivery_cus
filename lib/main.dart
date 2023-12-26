@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
           primary: AppColors.indigoAccent,
           secondary: Colors.deepOrange,
         ),
-        cardTheme: const CardTheme(elevation: 1, shadowColor: Colors.black),
+        cardTheme: const CardTheme(elevation: 5.0, shadowColor: Colors.black),
       ),
     );
   }

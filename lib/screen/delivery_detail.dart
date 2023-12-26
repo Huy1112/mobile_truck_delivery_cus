@@ -15,11 +15,13 @@ class DeliveryDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => DeliveryDetailController());
     final _formKey = GlobalKey<FormState>();
     return GetBuilder<DeliveryDetailController>(
         builder: (deliveryDetailController) => Form(
               key: _formKey,
               child: Scaffold(
+                backgroundColor: AppColors.grey400,
                 appBar: AppBar(
                   backgroundColor: AppColors.appbarBackground,
                   leading: const BackButton(),
@@ -128,38 +130,31 @@ class DeliveryDetail extends StatelessWidget {
                                   fontSizeTitle: 18,
                                 ),
                                 Padding(
-                                    padding: const EdgeInsets.only(left: 10),
-                                    child: Obx(
-                                      () => ChipsChoice<int>.single(
-                                        value:
-                                            deliveryDetailController.tag.value,
-                                        onChanged: (val) => {
-                                          deliveryDetailController.tag.value =
-                                              val,
-                                          deliveryDetailController
-                                              .onChangedValueTypeMerchandise(
-                                                  val)
-                                        },
-                                        choiceItems:
-                                            C2Choice.listFrom<int, String>(
-                                          source: deliveryDetailController
-                                              .serviceOptions,
-                                          value: (i, v) => i,
-                                          label: (i, v) => v,
-                                          tooltip: (i, v) => v,
-                                        ),
-                                        wrapped: true,
-                                        choiceStyle: C2ChipStyle.filled(
-                                          selectedStyle: const C2ChipStyle(
-                                            backgroundColor:
-                                                AppColors.appBottomBar,
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(25),
-                                            ),
-                                          ),
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: ChipsChoice<int>.single(
+                                    value: deliveryDetailController.tag,
+                                    onChanged: (val) => {
+                                      deliveryDetailController
+                                          .onchangeTagServices(val)
+                                    },
+                                    choiceItems: C2Choice.listFrom<int, String>(
+                                      source: deliveryDetailController
+                                          .serviceOptions,
+                                      value: (i, v) => i,
+                                      label: (i, v) => v,
+                                      tooltip: (i, v) => v,
+                                    ),
+                                    wrapped: true,
+                                    choiceStyle: C2ChipStyle.filled(
+                                      selectedStyle: const C2ChipStyle(
+                                        backgroundColor: AppColors.appBottomBar,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(25),
                                         ),
                                       ),
-                                    )),
+                                    ),
+                                  ),
+                                ),
                                 deliveryDetailController.isSelectedTypeOther
                                     ? Padding(
                                         padding: const EdgeInsets.fromLTRB(
@@ -176,16 +171,6 @@ class DeliveryDetail extends StatelessWidget {
                                               children: [
                                                 Flexible(
                                                   child: TextFormField(
-                                                    validator: (value) {
-                                                      if (deliveryDetailController
-                                                          .isSelectedTypeOther) {
-                                                        if (value == null ||
-                                                            value.isEmpty) {
-                                                          return 'Please enter some text';
-                                                        }
-                                                      }
-                                                      return null;
-                                                    },
                                                     controller:
                                                         deliveryDetailController
                                                             .otherDetailTypeMerchandiseInput,
@@ -237,33 +222,28 @@ class DeliveryDetail extends StatelessWidget {
                                         'Đơn vị :',
                                         style: TextStyle(fontSize: 16),
                                       ),
-                                      Obx(
-                                        () => ChipsChoice<int>.single(
-                                          value: deliveryDetailController
-                                              .tagUnit.value,
-                                          onChanged: (val) => {
-                                            deliveryDetailController
-                                                .tagUnit.value = val,
-                                            deliveryDetailController
-                                                .onChangedValueUnitMerchandise(
-                                                    val)
-                                          },
-                                          choiceItems:
-                                              C2Choice.listFrom<int, String>(
-                                            source: deliveryDetailController
-                                                .unitOptions,
-                                            value: (i, v) => i,
-                                            label: (i, v) => v,
-                                            tooltip: (i, v) => v,
-                                          ),
-                                          wrapped: true,
-                                          choiceStyle: C2ChipStyle.filled(
-                                            selectedStyle: const C2ChipStyle(
-                                              backgroundColor:
-                                                  AppColors.appBottomBar,
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(25),
-                                              ),
+                                      ChipsChoice<int>.single(
+                                        value: deliveryDetailController.tagUnit,
+                                        onChanged: (val) => {
+                                          deliveryDetailController
+                                              .onChangedValueUnitMerchandise(
+                                                  val)
+                                        },
+                                        choiceItems:
+                                            C2Choice.listFrom<int, String>(
+                                          source: deliveryDetailController
+                                              .unitOptions,
+                                          value: (i, v) => i,
+                                          label: (i, v) => v,
+                                          tooltip: (i, v) => v,
+                                        ),
+                                        wrapped: true,
+                                        choiceStyle: C2ChipStyle.filled(
+                                          selectedStyle: const C2ChipStyle(
+                                            backgroundColor:
+                                                AppColors.appBottomBar,
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(25),
                                             ),
                                           ),
                                         ),
@@ -281,37 +261,33 @@ class DeliveryDetail extends StatelessWidget {
                                           children: [
                                             Row(
                                               children: [
-                                                Obx(
-                                                  () => ChipsChoice<int>.single(
-                                                    value:
-                                                        deliveryDetailController
-                                                            .tagUnitCm.value,
-                                                    onChanged: (val) => {
+                                                ChipsChoice<int>.single(
+                                                  value:
                                                       deliveryDetailController
-                                                          .tagUnitCm
-                                                          .value = val,
-                                                    },
-                                                    choiceItems: C2Choice
-                                                        .listFrom<int, String>(
-                                                      source:
-                                                          deliveryDetailController
-                                                              .unitCmOptions,
-                                                      value: (i, v) => i,
-                                                      label: (i, v) => v,
-                                                      tooltip: (i, v) => v,
-                                                    ),
-                                                    wrapped: true,
-                                                    choiceStyle:
-                                                        C2ChipStyle.filled(
-                                                      selectedStyle:
-                                                          const C2ChipStyle(
-                                                        backgroundColor:
-                                                            AppColors
-                                                                .appBottomBar,
-                                                        borderRadius:
-                                                            BorderRadius.all(
-                                                          Radius.circular(25),
-                                                        ),
+                                                          .tagUnitCm,
+                                                  onChanged: (val) => {
+                                                    deliveryDetailController
+                                                        .onChangedTagUnit(val),
+                                                  },
+                                                  choiceItems: C2Choice
+                                                      .listFrom<int, String>(
+                                                    source:
+                                                        deliveryDetailController
+                                                            .unitCmOptions,
+                                                    value: (i, v) => i,
+                                                    label: (i, v) => v,
+                                                    tooltip: (i, v) => v,
+                                                  ),
+                                                  wrapped: true,
+                                                  choiceStyle:
+                                                      C2ChipStyle.filled(
+                                                    selectedStyle:
+                                                        const C2ChipStyle(
+                                                      backgroundColor: AppColors
+                                                          .appBottomBar,
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                        Radius.circular(25),
                                                       ),
                                                     ),
                                                   ),
@@ -352,24 +328,24 @@ class DeliveryDetail extends StatelessWidget {
                                           ],
                                         ),
                                 ),
-                                deliveryDetailController.tagUnit.value == 0
+                                deliveryDetailController.tagUnit == 0
                                     ? Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         mainAxisSize: MainAxisSize.max,
                                         children: <Widget>[
-                                          Obx(() => Container(
-                                                width: 379,
-                                                height: 300,
-                                                child: Image.asset(
-                                                  fit: BoxFit.cover,
-                                                  deliveryDetailController
-                                                      .onChangedPictureOfCMUnit(
-                                                          deliveryDetailController
-                                                              .tagUnitCm.value),
-                                                  scale: 2.5,
-                                                ),
-                                              )),
+                                          Container(
+                                            width: 379,
+                                            height: 300,
+                                            child: Image.asset(
+                                              fit: BoxFit.cover,
+                                              deliveryDetailController
+                                                  .onChangedPictureOfCMUnit(
+                                                      deliveryDetailController
+                                                          .tagUnitCm),
+                                              scale: 2.5,
+                                            ),
+                                          ),
                                         ],
                                       )
                                     : Container(),
@@ -432,7 +408,7 @@ class DeliveryDetail extends StatelessWidget {
                   ),
                 ),
                 bottomNavigationBar: BottomAppBar(
-                  height: deliveryDetailController.isOpenSubTotalCollapse.value
+                  height: deliveryDetailController.isOpenSubTotalCollapse
                       ? 200
                       : 140,
                   color: Colors.white,
@@ -443,8 +419,7 @@ class DeliveryDetail extends StatelessWidget {
                             0,
                             5,
                             0,
-                            deliveryDetailController
-                                    .isOpenSubTotalCollapse.value
+                            deliveryDetailController.isOpenSubTotalCollapse
                                 ? 5
                                 : 10),
                         child: GestureDetector(
@@ -472,7 +447,7 @@ class DeliveryDetail extends StatelessWidget {
                                       color: AppColors.black),
                                 ),
                                 Icon(deliveryDetailController
-                                        .isOpenSubTotalCollapse.value
+                                        .isOpenSubTotalCollapse
                                     ? Icons.arrow_drop_down
                                     : Icons.arrow_drop_up)
                               ],
@@ -480,7 +455,7 @@ class DeliveryDetail extends StatelessWidget {
                           ),
                         ),
                       ),
-                      deliveryDetailController.isOpenSubTotalCollapse.value
+                      deliveryDetailController.isOpenSubTotalCollapse
                           ? Padding(
                               padding: EdgeInsets.fromLTRB(5, 5, 0, 20),
                               child: Column(
@@ -585,7 +560,7 @@ class DeliveryDetail extends StatelessWidget {
                                 } else {
                                   if (_formKey.currentState!.validate()) {
                                     print('zoooooo');
-// deliveryDetailController.bookingOrder();
+                                    deliveryDetailController.bookingOrder();
                                   } else {
                                     Get.snackbar(
                                       "",

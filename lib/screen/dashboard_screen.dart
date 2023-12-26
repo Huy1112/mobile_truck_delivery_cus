@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../constant/app_colors.dart';
 import '../controller/dashboard_controller.dart';
-import '../wigets/widget_home.dart';
+import '../wigets/headline.dart';
+import 'widget_home.dart';
 
 class DashboardScreen extends StatelessWidget {
   static const TextStyle optionStyle =
@@ -31,12 +33,8 @@ class DashboardScreen extends StatelessWidget {
     final DashboardController dashboardController =
         Get.put(DashboardController());
     return Scaffold(
-        backgroundColor: Colors.white30,
-        body: Padding(
-          padding: const EdgeInsets.all(16),
-          child:
-              Obx(() => _widgetOptions.elementAt(dashboardController.getIndex)),
-        ),
+        backgroundColor: AppColors.grey400,
+        body: Obx(() => _widgetOptions.elementAt(dashboardController.getIndex)),
         bottomNavigationBar: Theme(
             data: Theme.of(context).copyWith(
                 // sets the background color of the `BottomNavigationBar`

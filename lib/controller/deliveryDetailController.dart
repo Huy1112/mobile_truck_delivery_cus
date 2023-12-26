@@ -6,6 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:truck_delivery_customer/models/order_form.dart';
 
+import '../models/route.dart';
 import '../utils/api_end_points.dart';
 import 'dashboard_controller.dart';
 import 'package:http/http.dart' as http;
@@ -26,13 +27,13 @@ class DeliveryDetailController extends GetxController {
       Get.put(DashboardController());
 
   bool isError = false;
-  RxBool isOpenSubTotalCollapse = false.obs;
+  bool isOpenSubTotalCollapse = false;
 
   // 0: standard 1: premium
   int selectedService = 0;
 
   //Type Selected Merchandise
-  RxInt tag = 0.obs;
+  int tag = 0;
   bool isSelectedTypeOther = false;
   List<String> serviceOptions = [
     'Thực Phẩm',
@@ -42,7 +43,7 @@ class DeliveryDetailController extends GetxController {
   ];
 
   //Unit params
-  RxInt tagUnit = 0.obs;
+  int tagUnit = 0;
 
   // 0: centimets 1: meters
   // true: meters false: centimets
@@ -53,7 +54,7 @@ class DeliveryDetailController extends GetxController {
   ];
 
   //Unit params of cm
-  RxInt tagUnitCm = 0.obs;
+  int tagUnitCm = 0;
   List<String> unitCmOptions = [
     'S',
     'M',
@@ -63,10 +64,6 @@ class DeliveryDetailController extends GetxController {
 
   bool isReceiveCodForCustomer = false;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   Future<String> setCurrentLocation() async {
     if (!await dashboardController.handleLocationPermission()) return '';
@@ -84,7 +81,19 @@ class DeliveryDetailController extends GetxController {
     update();
   }
 
-  void onChangedValueTypeMerchandise(int value) {
+  void onChangedValueUnitMerchandise(int value) {
+    tagUnit = value;
+
+    if (value == 1) {
+      isSelectedUnit = true;
+    } else {
+      isSelectedUnit = false;
+    }
+    update();
+  }
+
+  void onchangeTagServices(int value) {
+    tag = value;
     if (value == 3) {
       isSelectedTypeOther = true;
     } else {
@@ -93,12 +102,8 @@ class DeliveryDetailController extends GetxController {
     update();
   }
 
-  void onChangedValueUnitMerchandise(int value) {
-    if (value == 1) {
-      isSelectedUnit = true;
-    } else {
-      isSelectedUnit = false;
-    }
+  void onChangedTagUnit(int value) {
+    tagUnitCm = value;
     update();
   }
 
@@ -131,10 +136,10 @@ class DeliveryDetailController extends GetxController {
       pointToPickup: pointToPickupInput.text,
       destination: destinationInput.text,
       selectedService: selectedService,
-      typeMerchandise: tag.value != 3
-          ? serviceOptions[tag.value]
+      typeMerchandise: tag != 3
+          ? serviceOptions[tag]
           : otherDetailTypeMerchandiseInput.text,
-      unitMerchandise: unitOptions[tagUnit.value],
+      unitMerchandise: unitOptions[tagUnit],
       length: int.parse(lengthInput.text),
       width: int.parse(widthInput.text),
       height: int.parse(heightInput.text),
@@ -145,39 +150,13 @@ class DeliveryDetailController extends GetxController {
 
     print(orderForm.toJson());
 
-    var headers = {'Content-Type': 'application/json'};
-    try {
-      var url = Uri.parse(
-          ApiEndPoints.baseUrl + ApiEndPoints.authEndpoints.bookingOrder);
-      print(jsonEncode(orderForm));
-      http.Response response = await http.post(url,
-          body: utf8.encode(jsonEncode(orderForm)), headers: headers);
+    Get.toNamed(Routes.confirmOrderPage, arguments: {"order": orderForm});
 
-      if (response.statusCode == 200) {
-        final json = jsonDecode(response.body);
-        if (json['status']) {
-        } else {
-          throw jsonDecode(response.body)['Message'];
-        }
-      } else {
-        throw jsonDecode(response.body)["Message"] ?? "Unknown Error Occured";
-      }
-    } catch (error) {
-      showDialog(
-          context: Get.context!,
-          builder: (context) {
-            return SimpleDialog(
-              title: Text('Error'),
-              contentPadding: EdgeInsets.all(20),
-              children: [Text(error.toString())],
-            );
-          });
-    }
   }
 
   void checkUnitCmAndSetValueForMerchandise() {
     if (!isSelectedUnit) {
-      switch (tagUnitCm.value) {
+      switch (tagUnitCm) {
         case 0:
           lengthInput.text = "25";
           widthInput.text = "20";
@@ -208,10 +187,10 @@ class DeliveryDetailController extends GetxController {
   }
 
   void openSubtotal() {
-    if (isOpenSubTotalCollapse.value == false) {
-      isOpenSubTotalCollapse.value = true;
+    if (isOpenSubTotalCollapse == false) {
+      isOpenSubTotalCollapse = true;
     } else {
-      isOpenSubTotalCollapse.value = false;
+      isOpenSubTotalCollapse = false;
     }
     update();
   }

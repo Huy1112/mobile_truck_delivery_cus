@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:truck_delivery_customer/screen/confirm_order_page.dart';
 import 'package:truck_delivery_customer/screen/dashboard_screen.dart';
 import 'package:truck_delivery_customer/screen/delivery_detail.dart';
 import 'package:truck_delivery_customer/screen/login.dart';
@@ -20,6 +21,10 @@ class AppPages {
       name: "/deliveryDetail",
       page: () => DeliveryDetail(),
     ),
+    GetPage(
+        name: "/confirmOrder",
+        page: () => ConfirmOrderPage(),
+        arguments: Get.arguments),
     // GetPage(
     //   name: "/stock",
     //   page: () => const ResponsiveLayout(

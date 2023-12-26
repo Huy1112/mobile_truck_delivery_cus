@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:truck_delivery_customer/constant/app_colors.dart';
 
 class CardAnnounceMedium extends StatelessWidget {
   final String title;
@@ -14,7 +15,7 @@ class CardAnnounceMedium extends StatelessWidget {
     return Container(
       width: 320,
       decoration: BoxDecoration(
-        color: Colors.black,
+        color: Colors.white54,
         borderRadius: BorderRadius.circular(8),
       ),
       child: ListTile(
@@ -25,7 +26,8 @@ class CardAnnounceMedium extends StatelessWidget {
             ? Icon(
           Icons.dynamic_form,
           size: 48,
-          color: Theme.of(context).colorScheme.primary,
+          color: AppColors.blueAccent,
+          // color: Theme.of(context).colorScheme.primary,
         )
             : null,
         title: Text(
@@ -33,7 +35,8 @@ class CardAnnounceMedium extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .headline5!
-              .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
+              .copyWith(fontWeight: FontWeight.bold),
+            // , color: Colors.white
         ),
         subtitle: subtitle != null
             ? Text(
