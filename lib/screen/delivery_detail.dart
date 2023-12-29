@@ -114,7 +114,66 @@ class DeliveryDetail extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            const ListTileService(),
+                            Row(children: <Widget>[
+                              Flexible(
+                                child: ListTileService(
+                                  haveIcon: false,
+                                  leadingIcon: Container(),
+                                  content: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        ListTile(
+                                          title: Text(
+                                            'Chọn Dịch Vụ',
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                                color: AppColors.black),
+                                          ),
+                                        ),
+                                        _radioButton(context,
+                                            label: 'Tiêu Chuẩn (3 - 4 ngày).',
+                                            value: "0"),
+                                        _radioButton(context,
+                                            label: 'Hỏa Tốc (1 - 2 ngày).',
+                                            value: "1"),
+                                        Padding(
+                                          padding:
+                                              EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              primary: AppColors.appBottomBar,
+                                              minimumSize:
+                                                  const Size.fromHeight(
+                                                      50), // NEW
+                                            ),
+                                            onPressed: () {
+                                              Get.back();
+                                            },
+                                            child: Text(
+                                              'Tiếp theo',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: AppColors.white),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                  texttitle: Text(
+                                    'Lấy hàng trong ${deliveryDetailController.selectedService == 1 ? ' 1 - 2 ngày.' : '3 - 4 ngày.'} ',
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                        color: AppColors.black),
+                                  ),
+                                  heightBottomsheet: 0.37,
+                                ),
+                              )
+                            ]),
                           ],
                         ),
                       ),
@@ -537,7 +596,7 @@ class DeliveryDetail extends StatelessWidget {
                                 minimumSize: const Size.fromHeight(60), // NEW
                               ),
                               onPressed: () {
-                                if (deliveryDetailController
+                                /*if (deliveryDetailController
                                         .pointToPickupInput.text.isEmpty ||
                                     deliveryDetailController
                                         .destinationInput.text.isEmpty) {
@@ -558,10 +617,10 @@ class DeliveryDetail extends StatelessWidget {
                                     ),
                                   );
                                 } else {
-                                  if (_formKey.currentState!.validate()) {
-                                    print('zoooooo');
-                                    deliveryDetailController.bookingOrder();
-                                  } else {
+                                  if (_formKey.currentState!.validate()) {*/
+                                print('zoooooo');
+                                deliveryDetailController.bookingOrder();
+                                /*} else {
                                     Get.snackbar(
                                       "",
                                       "",
@@ -579,7 +638,7 @@ class DeliveryDetail extends StatelessWidget {
                                       ),
                                     );
                                   }
-                                }
+                                }*/
                               },
                               child: const Text(
                                 'Kiểm tra đơn hàng',
@@ -655,4 +714,18 @@ class DeliveryDetail extends StatelessWidget {
               ),
             ],
           ));
+
+  //RadioButton for Service delivery
+  Widget _radioButton(BuildContext context,
+          {required String label, required String value}) =>
+      GetBuilder<DeliveryDetailController>(
+          builder: (deliveryDetailController) => RadioListTile(
+              title: Text(
+                label,
+                style: TextStyle(fontSize: 18),
+              ),
+              value: value,
+              groupValue: deliveryDetailController.selectedService.toString(),
+              onChanged: (value) => deliveryDetailController
+                  .onClickRadioButtonToSetService(value!)));
 }

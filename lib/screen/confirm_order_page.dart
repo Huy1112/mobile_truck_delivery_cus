@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:truck_delivery_customer/wigets/list_tile_service.dart';
 import '../constant/app_colors.dart';
 import '../controller/confirm_order_page_controller.dart';
 import '../wigets/floating_action_button.dart';
@@ -71,8 +72,8 @@ class ConfirmOrderPage extends StatelessWidget {
                                 ],
                               ),
                               trailing: Icon(
-                                Icons.arrow_right,
-                                size: 20,
+                                Icons.navigate_next,
+                                size: 25,
                                 color: AppColors.black,
                               ),
                             ),
@@ -105,8 +106,8 @@ class ConfirmOrderPage extends StatelessWidget {
                                 ],
                               ),
                               trailing: Icon(
-                                Icons.arrow_right,
-                                size: 20,
+                                Icons.navigate_next,
+                                size: 25,
                                 color: AppColors.black,
                               ),
                             ),
@@ -219,32 +220,120 @@ class ConfirmOrderPage extends StatelessWidget {
                                     color: AppColors.black),
                               ),
                             ),
-                            ListTile(
-                              enabled: false,
-                              contentPadding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-                              leading: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.payment,
-                                    size: 25,
-                                    color: AppColors.black,
-                                  ),
-                                ],
-                              ),
-                              title: Text(
-                                '${controller.payerOptions[controller.tagPayer]}',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.black),
-                              ),
-                              trailing: Icon(
-                                Icons.arrow_right,
-                                size: 20,
-                                color: AppColors.black,
-                              ),
-                            ),
+                            ListTileService(
+                                haveIcon: true,
+                                leadingIcon: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.payment,
+                                      size: 25,
+                                      color: AppColors.black,
+                                    ),
+                                  ],
+                                ),
+                                content: Container(
+                                  margin: const EdgeInsets.all(0),
+                                  child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              15, 10, 0, 10),
+                                          child: Text(
+                                            'Chọn phương thức thanh toán',
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                                color: AppColors.black),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 25),
+                                          child: Text(
+                                            'Các phương thức được liên kết',
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                                color: AppColors.black),
+                                          ),
+                                        ),
+                                        Container(
+                                          margin:
+                                              EdgeInsets.fromLTRB(15, 5, 0, 0),
+                                          child: Column(
+                                            children: [
+                                              _radioButton(context,
+                                                  label:
+                                                      'Người gửi trả tiền mặt',
+                                                  value: "0"),
+                                              _radioButton(context,
+                                                  label:
+                                                      'Người nhận trả tiền mặt',
+                                                  value: "1"),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 25),
+                                          child: Text(
+                                            'Thêm phương thức khác',
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                                color: AppColors.black),
+                                          ),
+                                        ),
+                                        Container(
+                                          margin:
+                                              EdgeInsets.fromLTRB(15, 5, 0, 0),
+                                          child: Column(
+                                            children: [
+                                              _radioButton(context,
+                                                  label: 'MoMo', value: "0"),
+                                              _radioButton(context,
+                                                  label: 'Thẻ.', value: "1"),
+                                              _radioButton(context,
+                                                  label: 'Zalopay.',
+                                                  value: "2"),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              10, 10, 10, 0),
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              primary: AppColors.appBottomBar,
+                                              minimumSize:
+                                                  const Size.fromHeight(
+                                                      50), // NEW
+                                            ),
+                                            onPressed: () {
+                                              Get.back();
+                                            },
+                                            child: Text(
+                                              'Tiếp theo',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: AppColors.white),
+                                            ),
+                                          ),
+                                        ),
+                                      ]),
+                                ),
+                                texttitle: Text(
+                                  '${controller.payerOptions[controller.tagPayer]}',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.black),
+                                ),
+                                heightBottomsheet: 0.55),
                           ],
                         ),
                       ),
@@ -385,4 +474,17 @@ class ConfirmOrderPage extends StatelessWidget {
               ),
             ));
   }
+
+  Widget _radioButton(BuildContext context,
+          {required String label, required String value}) =>
+      GetBuilder<ConfirmOrderController>(
+          builder: (confirmOrderController) => RadioListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(
+                label,
+                style: TextStyle(fontSize: 18),
+              ),
+              value: value,
+              groupValue: "1",
+              onChanged: (value) => {}));
 }
